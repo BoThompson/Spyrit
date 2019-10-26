@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum DamageTypes
+{
+    Melee = 8,
+    Ranged = 9,
+    Magic = 10
+}
+
 public class Unit : MonoBehaviour
 {
     public int health = 3;
