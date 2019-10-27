@@ -9,6 +9,7 @@ public enum PaddleTypes
     Magic = 12,
     Melee = 13
 }
+
 public class Paddle : MonoBehaviour
 {
     public float position;
@@ -22,6 +23,7 @@ public class Paddle : MonoBehaviour
     const float BETA = 0.6f;
     public float rotationOffset;
     private SpriteRenderer spriteRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,16 +58,15 @@ public class Paddle : MonoBehaviour
     {
         float movement = 0;
         float rotation = 0;
+
         if (Input.GetKey(KeyCode.A))
         {
             movement -= 1;
         }
-
         if (Input.GetKey(KeyCode.D))
         {
             movement += 1;
         }
-
         if(Input.GetKey(KeyCode.J))
         {
             rotation -= 1;
@@ -93,8 +94,12 @@ public class Paddle : MonoBehaviour
             gameObject.layer = (int)PaddleTypes.Melee;
             spriteRenderer.color = Color.red;
         }
-        position = Mathf.Clamp(position + movement * speed * Time.deltaTime, 0, 1);
-        rotationOffset = Mathf.Clamp(rotationOffset + rotation * angularSpeed * Time.deltaTime, -30, 30);
+    }
+
+    void Move(float value)
+    {
+        position = Mathf.Clamp(position + value * speed * Time.deltaTime, 0, 1);
+
         //If position 0 - alpha lerp rotation 0
         if (position <= ALPHA)
         {
@@ -108,11 +113,67 @@ public class Paddle : MonoBehaviour
             transform.rotation = Quaternion.Lerp(Quaternion.Euler(0, 0, rotationOffset), Quaternion.Euler(0, 0, 270 + rotationOffset), (position - ALPHA) / (BETA - ALPHA));
         }
         else
+        //If position beta - 1 lerp rotation 90
         {
-            //If position beta - 1 lerp rotation 90
             transform.position = Vector3.Lerp(betaPosition, endPosition, (position - BETA) / (1 - BETA));
             transform.rotation = Quaternion.Euler(0, 0, 270 + rotationOffset);
         }
+    }
+
+    void Rotate(float value)
+    {
+        rotationOffset = Mathf.Clamp(rotationOffset + value * angularSpeed * Time.deltaTime, -30, 30);
+
+        //If position 0 - alpha lerp rotation 0
+        if (position <= ALPHA)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, rotationOffset);
+        }
+        else if (position <= BETA)
+        //If position alpha - beta lerp and rotate
+        {
+            transform.rotation = Quaternion.Lerp(Quaternion.Euler(0, 0, rotationOffset), Quaternion.Euler(0, 0, 270 + rotationOffset), (position - ALPHA) / (BETA - ALPHA));
+        }
+        else
+        //If position beta - 1 lerp rotation 90
+        {    
+            transform.rotation = Quaternion.Euler(0, 0, 270 + rotationOffset);
+        }
+    }
+
+    void SwitchBlue()
+    {
+        //Debug.Log("yup");
+        gameObject.layer = (int)PaddleTypes.Magic;
+        spriteRenderer.color = Color.blue;
+    }
+
+    void SwitchYellow()
+    {
+        gameObject.layer = (int)PaddleTypes.Ranged;
+        spriteRenderer.color = Color.yellow;
+    }
+
+    void SwitchRed()
+    {
+        gameObject.layer = (int)PaddleTypes.Melee;
+        spriteRenderer.color = Color.red;
+    }
+
+    public void ActivateImpulse(int impulse, float value)
+    {
+        if (value == -999)
+            return;
+
+        switch (impulse)
+        {
+            case 0: Move(value); break;
+            case 1: Rotate(value); break;
+            case 2: SwitchBlue(); break;
+            case 3: SwitchYellow(); break;
+            case 4: SwitchRed(); break;
+        }
+        
         
     }
 }

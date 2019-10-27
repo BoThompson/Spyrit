@@ -120,6 +120,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &155896435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 155896437}
+  - component: {fileID: 155896436}
+  m_Layer: 0
+  m_Name: InputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &155896436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155896435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c679cd9cde29b04887b8aed4979de0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p1: {fileID: 349161572}
+  p2: {fileID: 0}
+  p3: {fileID: 0}
+  p4: {fileID: 0}
+--- !u!4 &155896437
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155896435}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.3248806, y: -2.2382143, z: -6.434189}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &237065401
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +180,7 @@ GameObject:
   - component: {fileID: 237065402}
   - component: {fileID: 237065406}
   - component: {fileID: 237065405}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ball
   m_TagString: Ball
   m_Icon: {fileID: 0}
@@ -194,7 +241,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 0.8384061, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.10714626, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -268,7 +315,7 @@ GameObject:
   - component: {fileID: 349161572}
   - component: {fileID: 349161576}
   - component: {fileID: 349161575}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Paddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: 0
   speed: 2
-  angularSpeed: 0
+  angularSpeed: 180
   startPosition: {x: -10, y: -1, z: 0}
   alphaPosition: {x: -7, y: -1, z: 0}
   betaPosition: {x: -6.5, y: -1.5, z: 0}
@@ -334,7 +381,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
